@@ -1,0 +1,56 @@
+<!--https://www.vuemastery.com/courses/intro-to-vue-js/conditional-rendering-->
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
+    <title>{{ product }}</title>
+    <link rel="stylesheet" type="text/css" href="product_style.css">
+</head>
+
+<body>
+    <div class="nav-bar"></div>
+
+    <div id="app">
+        <div clas="product">
+
+            <div class="product-image">
+                <img v-bind:src="image">
+            </div>
+
+            <div class="product-info">
+                <h1>{{ title }}</h1>
+                <p v-if="inStock">In Stock</p>
+                <p v-else>Out of Stock</p>
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+
+                <div v-for="(variant, index) in variants" :key="variant.variantId" class="color-box"
+                    :style="{ backgroundColor: variant.variantColor }" @mouseover="updateProduct(index)">
+                </div>
+            </div>
+
+
+            <button v-on:click="addToCart" :disabled="!inStock" :class="{ disabledButton: !inStock }">Add to
+                cart</button>
+            <div class="cart">
+                <p>Cart({{cart}})</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="main.js"></script>
+
+    <!--
+            <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <scripts src="https://unpkg.com/vue"></scripts>
+            
+        -->
+
+</body>
+
+</html>
